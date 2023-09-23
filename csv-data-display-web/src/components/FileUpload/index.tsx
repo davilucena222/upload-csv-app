@@ -2,25 +2,33 @@ import { useRef } from "react";
 
 import "./FileUpload.scss";
 import { Upload } from "phosphor-react";
+import { api } from "../../lib/axios";
 
 export function FileUpload() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  function handleFileInputChange() {
+  async function handleFileInputChange() {
     if (fileInputRef.current?.files && fileInputRef.current.files.length > 0) {
       const selectedFile = fileInputRef.current.files[0];
-      const reader = new FileReader();
+      
+      const data = new FormData();
+      data.append("file", selectedFile);
 
-      reader.onload = (event: ProgressEvent<FileReader>) => {
-        const target = event.target as FileReader;
+      uploadFile(data);
+    }
+  }
 
-        if (target && target.result) {
-          const csvData = target.result as string;
-          console.log(csvData);
-        }
-      };
+  async function uploadFile(file: FormData) {
+    try {
+      const response = await api.post("/api/files", file, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-      reader.readAsText(selectedFile);
+      return response.data;
+    } catch (error) {
+      return error;
     }
   }
 
@@ -28,6 +36,7 @@ export function FileUpload() {
     <div className="upload-area">
       <input 
         type="file"
+        name="file"
         accept=".csv"
         ref={fileInputRef}
         onChange={handleFileInputChange}
