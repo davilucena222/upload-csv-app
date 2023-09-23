@@ -1,23 +1,16 @@
-.container-input-search {
-  display: flex;
-  align-items: center;
-  justify-content: right;
-}
-
-.container-input-search form {
+.container-form {
+  position: absolute;
   height: 3.375rem;
   width: 100%;
+  bottom: calc(-3.375rem/2);
 
   max-width: 46rem;
   display: flex;
   gap: 0.5rem;
   padding: 0 1rem;
-
-  margin-top: 1rem;
 }
 
-.container-input-search input {
-  width: 30rem;
+.container-form input {
   height: 100%;
   flex: 1;
   color: var(--gray-100);
@@ -28,7 +21,7 @@
   font-size: 1rem;
 }
 
-.container-input-search .button-submit {
+.container-form button {
   height: 100%;
   width: 6.625rem;
   border-radius: 0.5rem;

@@ -1,11 +1,11 @@
 .container-data-card {
-  margin-top: 2rem;
+  margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-gap: 2rem;
 }
 
-ul {
+.data-card {
   width: 20rem;
   display: block;
   flex-direction: column;
@@ -15,12 +15,12 @@ ul {
   border-radius: 5px;
 }
 
-ul li {
+.data-card li {
   list-style: none;
   margin-bottom: 0.675rem;
 }
 
-.container-data-card ul:hover {
+.data-card:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease-in-out;
   cursor: pointer;

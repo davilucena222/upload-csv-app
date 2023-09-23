@@ -17,22 +17,22 @@ export function SearchBar() {
   }
 
   return (
-    <div className="container-input-search">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search for a data in the CSV file"
+    <>
+      <form onSubmit={handleSubmit} action="" className="container-form">
+        <input 
+          type="text" 
+          placeholder="Search for a data in the CSV file" 
           value={search}
           onChange={handleInputChange}
         />
 
-        <button type="submit" className="button-submit">
-          <MagnifyingGlass size={20} weight="bold" />
+        <button type="submit">
           Search
+          <MagnifyingGlass size={20} weight="bold" />
         </button>
       </form>
 
       <FileUpload />
-    </div>
+    </>
   )
 }
