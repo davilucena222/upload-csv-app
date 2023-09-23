@@ -1,0 +1,18 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  margin-top: 1rem;
+}
+
+.title {
+  margin-bottom: 1.1rem;
+}
+
+.separator {
+  width: 90%;
+  border: 2px solid var(--gray-100);
+}
