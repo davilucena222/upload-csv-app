@@ -65,6 +65,8 @@ router.post("/", multerConfig.single("file"), async (request: Request, response:
       });
 
       insertedRecords.push(newRecord);
+    } else {
+      return response.send("Record already exists");
     }
   }
 

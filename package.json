@@ -1,0 +1,26 @@
+{
+  "name": "upload-csv-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run start-backend\" \"npm run start-frontend\" \"npx prisma studio\"",
+    "prisma-studio": "cd backend-server/prisma/schema.prisma && npx prisma studio",
+    "start-backend": "cd backend-server && npm run dev",
+    "start-frontend": "cd csv-data-display-web && npm run dev",
+    "build": "npm run build-backend && npm run build-frontend",
+    "build-backend": "cd backend-server && npm run build",
+    "build-frontend": "cd csv-data-display-web && npm run build",
+    "test": "npm run custom-test", 
+    "custom-test": "concurrently \"npm run test-backend\" \"npm run test-frontend\"", 
+    "test-backend": "cd backend-server && npm run test",
+    "test-frontend": "cd csv-data-display-web && npm run test",
+    "lint": "concurrently \"npm run lint-backend\" \"npm run lint-frontend\"",
+    "lint-backend": "cd backend-server && npm run lint",
+    "lint-frontend": "cd csv-data-display-web && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  },
+  "prisma": {
+    "schema": "backend-server/prisma/schema.prisma"
+  }
+}
