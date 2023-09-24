@@ -16,7 +16,7 @@ interface CsvfileData {
 }
 
 router.post("/", multerConfig.single("file"), async (request: Request, response: Response) => {
-  const { file } = request;
+  const { file } = request as Request & { file: Express.Multer.File };
   const { buffer } = file;
 
   const readableFile = new Readable();
@@ -41,7 +41,6 @@ router.post("/", multerConfig.single("file"), async (request: Request, response:
   }
 
   csvfileInformations.shift();
-  console.log(csvfileInformations);
 
   const insertedRecords: CsvfileData[] = [];
 

@@ -1,35 +1,42 @@
-import { useState } from "react"
-import { MagnifyingGlass } from "phosphor-react";
-
+import { useEffect, useState } from "react"
 import "./SearchBar.scss"
 import { FileUpload } from "../FileUpload";
+import { useGlobalDataCsv } from "../../context/global-data-csv";
 
 export function SearchBar() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string | "">("");
+  const { handleInputChange, csvData } = useGlobalDataCsv();
+  const [fileExisted, setFileExisted] = useState<boolean>(false);
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearch(event.target.value);
-  }
+  useEffect(() => {
+    if (csvData.length === 0) {
+      setFileExisted(false);
+    } else {
+      setFileExisted(true);
+    }
+  }, [csvData]);
+  
+  function handleInputUserChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const valorDigitado = event.target.value;
+    setSearch(valorDigitado);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    // send the research for the back-end to looking for the data
+    if (valorDigitado === "") {
+      handleInputChange(""); 
+    } else {
+      handleInputChange(valorDigitado); 
+    }
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit} action="" className="container-form">
+      <form action="" className="container-form">
         <input 
           type="text" 
           placeholder="Search for a data in the CSV file" 
           value={search}
-          onChange={handleInputChange}
+          onChange={handleInputUserChange}
+          disabled={!fileExisted}
         />
-
-        <button type="submit">
-          Search
-          <MagnifyingGlass size={20} weight="bold" />
-        </button>
       </form>
 
       <FileUpload />

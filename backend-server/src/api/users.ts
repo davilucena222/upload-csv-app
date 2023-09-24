@@ -23,8 +23,6 @@ router.get("/", async (req: Request, res: Response) => {
 
     res.json(users);
   } catch (error) {
-    console.error("Error searching for users:", error);
-
     if (error instanceof PrismaClientUnknownRequestError) {
       if (error?.message) {
         return res.status(400).json({ error: "Duplicate entry" });

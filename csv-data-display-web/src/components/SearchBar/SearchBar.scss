@@ -21,18 +21,6 @@
   font-size: 1rem;
 }
 
-.container-form button {
-  height: 100%;
-  width: 6.625rem;
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0 1rem;
-  background: var(--blue-dark);
-  color: var(--gray-100);
-  display: flex;
-  align-items: center;
-  gap: 0.300rem;
-  font-weight: 700;
-  line-height: 1.225rem;
-  font-size: 0.875rem;
+input[disabled] {
+  cursor: not-allowed;
 }
